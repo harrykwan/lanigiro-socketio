@@ -65,9 +65,11 @@
     <form id="form" action="">
         <input id="input" autocomplete="off" /><button>Send</button>
     </form>
-    <script src="http://13.229.79.196/socket.io/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.4.1/socket.io.min.js"
+        integrity="sha384-fKnu0iswBIqkjxrhQCTZ7qlLHOFEgNkRmK2vaO/LbTZSXdJfAu6ewRBdwHPhBo/H"
+        crossorigin="anonymous"></script>
     <script>
-        var socket = io("http://13.229.79.196/");
+        var socket = io("https://localhost/");
 
         var form = document.getElementById('form');
         var input = document.getElementById('input');
