@@ -1,10 +1,16 @@
 require("dotenv").config();
+const fs = require("fs");
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const http = require("http");
-const server = http.createServer(app);
+const server = http.createServer(app, {
+  allowHTTP1: true,
+  key: fs.readFileSync("key.pem"),
+  cert: fs.readFileSync("cert.pem"),
+});
 const { Server } = require("socket.io");
+
 const io = new Server(server, {
   cors: {
     origin: "*",
