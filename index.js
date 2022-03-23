@@ -4,11 +4,15 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const http = require("http");
-const server = http.createServer(app, {
-  allowHTTP1: true,
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem"),
-});
+const https = require("https");
+const server = https.createServer(
+  {
+    allowHTTP1: true,
+    key: fs.readFileSync("key.pem"),
+    cert: fs.readFileSync("cert.pem"),
+  },
+  app
+);
 const { Server } = require("socket.io");
 
 const io = new Server(server, {
@@ -44,6 +48,6 @@ app.get("/clientlist", (req, res) => {
 
 app.post("/updatelocation", (req, res) => {});
 
-server.listen(80, () => {
-  console.log("listening on *:80");
+server.listen(443, () => {
+  console.log("listening on *:443");
 });
