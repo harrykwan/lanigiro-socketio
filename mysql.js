@@ -1,4 +1,6 @@
 require("dotenv").config();
+require("./allsql");
+
 var mysql = require("mysql");
 
 var con = mysql.createConnection({
@@ -7,7 +9,11 @@ var con = mysql.createConnection({
   password: process.env.DB_PASS,
 });
 
-con.connect(function (err) {
-  if (err) throw err;
-  console.log("Connected!");
-});
+async function updatelocation() {
+  new Promise((resolve, reject) => {
+    con.connect(function (err) {
+      if (err) throw err;
+      console.log("Connected!");
+    });
+  });
+}
