@@ -5,7 +5,12 @@ const app = express();
 const http = require("http");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"],
+  },
+});
 
 app.use(bodyParser.json());
 
@@ -33,6 +38,6 @@ app.get("/clientlist", (req, res) => {
 
 app.post("/updatelocation", (req, res) => {});
 
-server.listen(3000, () => {
-  console.log("listening on *:3000");
+server.listen(80, () => {
+  console.log("listening on *:80");
 });
