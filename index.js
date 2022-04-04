@@ -7,9 +7,12 @@ const http = require("http");
 const https = require("https");
 const server = https.createServer(
   {
-    allowHTTP1: true,
-    key: fs.readFileSync("key.pem"),
-    cert: fs.readFileSync("cert.pem"),
+    key: fs.readFileSync(
+      "/opt/bitnami/letsencrypt/certificates/socketio.lanigiro.io.key"
+    ),
+    cert: fs.readFileSync(
+      "/opt/bitnami/letsencrypt/certificates/socketio.lanigiro.io.crt"
+    ),
   },
   app
 );
