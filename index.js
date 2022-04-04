@@ -4,18 +4,19 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const http = require("http");
-const https = require("https");
-const server = https.createServer(
-  {
-    key: fs.readFileSync(
-      "/opt/bitnami/letsencrypt/certificates/socketio.lanigiro.io.key"
-    ),
-    cert: fs.readFileSync(
-      "/opt/bitnami/letsencrypt/certificates/socketio.lanigiro.io.crt"
-    ),
-  },
-  app
-);
+// const https = require("https");
+const server = http.createServer(app);
+// const server = https.createServer(
+//   {
+//     key: fs.readFileSync(
+//       "/opt/bitnami/letsencrypt/certificates/socketio.lanigiro.io.key"
+//     ),
+//     cert: fs.readFileSync(
+//       "/opt/bitnami/letsencrypt/certificates/socketio.lanigiro.io.crt"
+//     ),
+//   },
+//   app
+// );
 const { Server } = require("socket.io");
 
 const io = new Server(server, {
@@ -51,6 +52,6 @@ app.get("/clientlist", (req, res) => {
 
 app.post("/updatelocation", (req, res) => {});
 
-server.listen(443, () => {
-  console.log("listening on *:443");
+server.listen(80, () => {
+  console.log("listening on *:80");
 });
